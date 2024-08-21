@@ -3,7 +3,7 @@ import 'package:flutter_application_1/assets_path/AppIconsPath.dart';
 import 'package:flutter_application_1/core/constants/AppColors.dart';
 import 'package:flutter_application_1/screens/home/drawer/drawer_pages/AboutUsPage.dart';
 import 'package:flutter_application_1/screens/home/drawer/drawer_pages/NormativeDocsPage.dart';
-import 'package:flutter_application_1/screens/home/widgets/PopUpItem.dart';
+import 'package:flutter_application_1/screens/home/widgets/HomePopUpItem.dart';
 
 class DrawerPage extends StatefulWidget {
   DrawerPage({super.key});
@@ -39,7 +39,7 @@ class _DrawerPageState extends State<DrawerPage> {
                     ),
                   ),
                   Expanded(child: Container()),
-                  PopUpMenuWidget(true, AppIcons.language)
+                  HomePopUpMenuWidget(true, AppIcons.language)
                 ],
               ),
             ),

@@ -4,9 +4,10 @@ import 'package:flutter_application_1/assets_path/AppImagesPath.dart';
 import 'package:flutter_application_1/core/constants/AppColors.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
+// ignore: must_be_immutable
 class PartnerWidget extends StatelessWidget {
-  const PartnerWidget({super.key});
-
+  PartnerWidget({required this.isSingle, super.key});
+  bool isSingle;
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -15,10 +16,12 @@ class PartnerWidget extends StatelessWidget {
           children: [
             Card(
               elevation: 5,
-              shadowColor: Colors.black,
-              color: Colors.white,
+              shadowColor:isSingle?Colors.transparent: Colors.black,
+              color:isSingle?AppColors.grey1: Colors.white,
               child: Container(
-                  width: MediaQuery.of(context).size.width * 0.8,
+                  width: isSingle
+                      ? MediaQuery.of(context).size.width * 0.9
+                      : MediaQuery.of(context).size.width * 0.8,
                   padding: const EdgeInsets.all(15),
                   child: Column(
                     children: [
@@ -27,7 +30,6 @@ class PartnerWidget extends StatelessWidget {
                           CircleAvatar(
                             radius: 28,
                             backgroundImage: AssetImage(AppImages.partner),
-                           
                           ),
                           const SizedBox(
                             width: 15,
@@ -36,7 +38,7 @@ class PartnerWidget extends StatelessWidget {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               SizedBox(
-                                width: MediaQuery.of(context).size.width*0.5,
+                                width: MediaQuery.of(context).size.width * 0.5,
                                 child: const Text(
                                   '<<QUYOSH ISSIQLIK ENERGIYASI>> Qo\'shma korxonasi',
                                   maxLines: 2,
@@ -141,7 +143,7 @@ class PartnerWidget extends StatelessWidget {
                           const SizedBox(
                             width: 10,
                           ),
-                           Column(
+                          Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
@@ -149,7 +151,7 @@ class PartnerWidget extends StatelessWidget {
                                 style: TextStyle(color: AppColors.grey3),
                               ),
                               SizedBox(
-                                width: MediaQuery.of(context).size.width*0.55,
+                                width: MediaQuery.of(context).size.width * 0.55,
                                 child: Text(
                                   'Jizzax viloyati,O\'zbekiston Respublikasi',
                                   maxLines: 1,

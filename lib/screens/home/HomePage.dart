@@ -6,9 +6,10 @@ import 'package:flutter_application_1/screens/home/widgets/BannerWidget.dart';
 import 'package:flutter_application_1/screens/home/widgets/BottomCardWidget.dart';
 import 'package:flutter_application_1/screens/home/widgets/CategoryWidget.dart';
 import 'package:flutter_application_1/screens/home/widgets/PartnerWidget.dart';
-import 'package:flutter_application_1/screens/home/widgets/PopUpItem.dart';
+import 'package:flutter_application_1/screens/home/widgets/HomePopUpItem.dart';
 import 'package:flutter_application_1/screens/home/widgets/TitleWidget.dart';
 import 'package:flutter_application_1/screens/home/widgets/TopProductsWidget.dart';
+import 'package:flutter_application_1/service/category/CategoryService.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
@@ -39,7 +40,9 @@ class _HomePageState extends State<HomePage> {
         }),
         elevation: 1,
         shadowColor: Colors.black,
-        actions: [PopUpMenuWidget(false, AppIcons.location)],
+        actions: [
+          HomePopUpMenuWidget(false, AppIcons.location),
+        ],
       ),
       drawer: DrawerPage(),
       body: SingleChildScrollView(
@@ -148,18 +151,60 @@ class _HomePageState extends State<HomePage> {
               titleText: 'Sotuv xitlari',
               withSeeAllButton: true,
             ),
+            FutureBuilder(
+              future: GetCategoryService.getCategory(),
+              builder: (context, snapshot) => 
+              snapshot.hasData?
+               SizedBox(
+                      width: double.infinity,
+                      height: 470,
+                      child: ListView.builder(
+                        scrollDirection: Axis.horizontal,
+                        shrinkWrap: true,
+                        itemCount: 5,
+                        itemBuilder: (context, index) {
+                          return Padding(
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 10, vertical: 10),
+                            child: TopProductsWidget(
+                              index: index,
+                              model: snapshot.data![index],
+                            ),
+                          );
+                        },
+                      ),
+                    )
+                  : 
+                  Container(
+                      child: Center(
+                          child: Text(
+                        '${snapshot.data.toString()}',
+                        maxLines: 100,
+                        
+                      )
+                          // CircularProgressIndicator(
+                          //   strokeWidth: 6,
+                          // ),
+                          ),
+                    ),
+            ),
+            TitleWidget(
+              titleText: 'Hamkor kompaniyalar',
+              withSeeAllButton: true,
+            ),
             SizedBox(
               width: double.infinity,
-              height: 470,
+              height: 350,
               child: ListView.builder(
                 scrollDirection: Axis.horizontal,
                 shrinkWrap: true,
-                itemCount: productData.length,
+                itemCount: 6,
                 itemBuilder: (context, index) {
-                  return  Padding(
-                    padding: EdgeInsets.symmetric(
-                        horizontal: 10, vertical: 10),
-                    child: TopProductsWidget(index: index,),
+                  return Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+                    child: PartnerWidget(
+                      isSingle: false,
+                    ),
                   );
                 },
               ),
@@ -176,33 +221,16 @@ class _HomePageState extends State<HomePage> {
                 shrinkWrap: true,
                 itemCount: 6,
                 itemBuilder: (context, index) {
-                  return const Padding(
+                  return Padding(
                     padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-                    child: PartnerWidget(),
+                    child: PartnerWidget(
+                      isSingle: false,
+                    ),
                   );
                 },
               ),
             ),
-            TitleWidget(
-              titleText: 'Hamkor kompaniyalar',
-              withSeeAllButton: true,
-            ),
-            SizedBox(
-              width: double.infinity,
-              height: 350,
-              child: ListView.builder(
-                scrollDirection: Axis.horizontal,
-                shrinkWrap: true,
-                itemCount: 6,
-                itemBuilder: (context, index) {
-                  return const Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-                    child: PartnerWidget(),
-                  );
-                },
-              ),
-            ),
-           BottomInfoWidget()
+            BottomInfoWidget()
           ],
         ),
       ),

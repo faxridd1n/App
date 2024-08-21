@@ -38,4 +38,8 @@ class AppImages {
   static const String locationBig = 'assets/images/locationBig.png';
   static const String phoneBig = 'assets/images/phoneBig.png';
   static const String mailBig = 'assets/images/mailBig.png';
+  static const String detailPhoto = 'assets/images/detailPhoto.png';
+  static const String commentAvatar = 'assets/images/commentAvatar.png';
+  static const String commentImage1 = 'assets/images/commentImage1.png';
+  static const String commentImage2 = 'assets/images/commentImage2.png';
 }

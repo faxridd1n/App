@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_application_1/assets_path/AppIconsPath.dart';
 import 'package:flutter_application_1/core/constants/AppColors.dart';
 import 'package:flutter_application_1/screens/favorite/components/Data.dart';
-import 'package:flutter_application_1/screens/home/widgets/TopProductsWidget.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class FavoritePage extends StatefulWidget {
@@ -19,7 +18,7 @@ class _FavoritePageState extends State<FavoritePage> {
       appBar: AppBar(
         backgroundColor: Colors.white,
         elevation: 1,
-        title: Text(
+        title: const Text(
           'Saqlanganlar',
           style: TextStyle(
             fontSize: 16,
@@ -37,10 +36,10 @@ class _FavoritePageState extends State<FavoritePage> {
                 SvgPicture.asset(
                   AppIcons.noLikedProduct,
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 20,
                 ),
-                Text(
+                const Text(
                   'Sizda hali saqlangan mahsulotlar yo’q',
                   style: TextStyle(
                     fontSize: 16,
@@ -48,10 +47,10 @@ class _FavoritePageState extends State<FavoritePage> {
                   ),
                   maxLines: 2,
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
-                Text(
+                const Text(
                   'Keyinroq foydalanish uchun mahsulotlarni saqlab qo’yishingiz mumkin.',
                   style: TextStyle(
                     fontSize: 14,
@@ -60,7 +59,7 @@ class _FavoritePageState extends State<FavoritePage> {
                   textAlign: TextAlign.center,
                   maxLines: 2,
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 20,
                 ),
                 ElevatedButton(
@@ -73,8 +72,8 @@ class _FavoritePageState extends State<FavoritePage> {
                   onPressed: () {
                    
                   },
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(
+                  child: const Padding(
+                    padding: EdgeInsets.symmetric(
                       horizontal: 20,
                       vertical: 15,
                     ),
@@ -95,11 +94,11 @@ class _FavoritePageState extends State<FavoritePage> {
               shrinkWrap: true,
               itemCount: likedProducts,
               itemBuilder: (context, index) {
-                return Padding(
+                return const Padding(
                   padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-                  child: TopProductsWidget(
-                    index: index,
-                  ),
+                  // child: TopProductsWidget(
+                  //   index: index,
+                  // ),
                 );
               },
             ),

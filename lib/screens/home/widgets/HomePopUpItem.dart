@@ -2,17 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 // ignore: must_be_immutable
-class PopUpMenuWidget extends StatefulWidget {
+class HomePopUpMenuWidget extends StatefulWidget {
   bool isLanguagePopUp;
   String icon;
 
-  PopUpMenuWidget(this.isLanguagePopUp, this.icon, {super.key});
+  HomePopUpMenuWidget(this.isLanguagePopUp, this.icon, {super.key});
 
   @override
-  State<PopUpMenuWidget> createState() => _PopUpMenuState();
+  State<HomePopUpMenuWidget> createState() => _HomePopUpMenuWidgetState();
 }
 
-class _PopUpMenuState extends State<PopUpMenuWidget> {
+class _HomePopUpMenuWidgetState extends State<HomePopUpMenuWidget> {
   String selectedItem = '';
   bool popUpIsOpen = false;
   @override
