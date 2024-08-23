@@ -2,12 +2,21 @@ import 'package:flutter/material.dart';
 import 'package:flutter_application_1/assets_path/AppIconsPath.dart';
 import 'package:flutter_application_1/assets_path/AppImagesPath.dart';
 import 'package:flutter_application_1/core/constants/AppColors.dart';
+import 'package:flutter_application_1/models/OrganizationContactModel.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
+import '../../../models/OrganizationModel.dart';
+
 // ignore: must_be_immutable
-class PartnerWidget extends StatelessWidget {
-  PartnerWidget({required this.isSingle, super.key});
+class OrganizationContactWidget extends StatelessWidget {
+  OrganizationContactWidget(
+      {required this.isSingle,
+      required this.model,
+      required this.contactModel,
+      super.key});
   bool isSingle;
+  OrganizationModel? model;
+  OrganizationContactModel? contactModel;
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -16,8 +25,8 @@ class PartnerWidget extends StatelessWidget {
           children: [
             Card(
               elevation: 5,
-              shadowColor:isSingle?Colors.transparent: Colors.black,
-              color:isSingle?AppColors.grey1: Colors.white,
+              shadowColor: isSingle ? Colors.transparent : Colors.black,
+              color: isSingle ? AppColors.grey1 : Colors.white,
               child: Container(
                   width: isSingle
                       ? MediaQuery.of(context).size.width * 0.9
@@ -39,8 +48,10 @@ class PartnerWidget extends StatelessWidget {
                             children: [
                               SizedBox(
                                 width: MediaQuery.of(context).size.width * 0.5,
-                                child: const Text(
-                                  '<<QUYOSH ISSIQLIK ENERGIYASI>> Qo\'shma korxonasi',
+                                child: Text(
+                                  model == null
+                                      ? contactModel!.result!.organizationName.toString()
+                                      : model!.organizationName.toString(),
                                   maxLines: 2,
                                   style: TextStyle(fontSize: 16),
                                   overflow: TextOverflow.ellipsis,
@@ -49,7 +60,7 @@ class PartnerWidget extends StatelessWidget {
                               const SizedBox(
                                 height: 10,
                               ),
-                              const Row(
+                              Row(
                                 children: [
                                   Icon(
                                     Icons.star,
@@ -59,12 +70,17 @@ class PartnerWidget extends StatelessWidget {
                                   SizedBox(
                                     width: 10,
                                   ),
-                                  Text('4.7'),
+                                  Text(
+                                    model == null
+                                        ? contactModel!.result!.rating
+                                            .toString()
+                                        : model!.rating.toString(),
+                                  ),
                                   SizedBox(
                                     width: 10,
                                   ),
                                   Text(
-                                    '(27 ta izohlar)',
+                                    '(${model == null ? contactModel!.result!.reviewCount!.toInt().toString() : model!.reviewCount!.toInt().toString()} ta izohlar)',
                                     style: TextStyle(color: AppColors.grey3),
                                   ),
                                 ],
@@ -93,14 +109,18 @@ class PartnerWidget extends StatelessWidget {
                           const SizedBox(
                             width: 10,
                           ),
-                          const Column(
+                          Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
                                 'Telefon raqam',
                                 style: TextStyle(color: AppColors.grey3),
                               ),
-                              Text('+9989836748'),
+                              Text(
+                                model == null
+                                    ? contactModel!.result!.phone!.toString()
+                                    : model!.contact!.phone!.toString(),
+                              ),
                             ],
                           )
                         ],
@@ -118,14 +138,18 @@ class PartnerWidget extends StatelessWidget {
                           const SizedBox(
                             width: 10,
                           ),
-                          const Column(
+                          Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
                                 'Email adres',
                                 style: TextStyle(color: AppColors.grey3),
                               ),
-                              Text('qwerty@mail.ru'),
+                              Text(
+                                model == null
+                                    ? contactModel!.result!.email.toString()
+                                    : model!.contact!.email.toString(),
+                              ),
                             ],
                           )
                         ],
@@ -153,7 +177,9 @@ class PartnerWidget extends StatelessWidget {
                               SizedBox(
                                 width: MediaQuery.of(context).size.width * 0.55,
                                 child: Text(
-                                  'Jizzax viloyati,O\'zbekiston Respublikasi',
+                                  model == null
+                                      ? contactModel!.result!.address.toString()
+                                      : model!.address.toString(),
                                   maxLines: 1,
                                   overflow: TextOverflow.ellipsis,
                                 ),

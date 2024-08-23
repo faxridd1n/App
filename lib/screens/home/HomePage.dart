@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/assets_path/AppIconsPath.dart';
 import 'package:flutter_application_1/core/constants/AppColors.dart';
+import 'package:flutter_application_1/models/OrganizationContactModel.dart';
 import 'package:flutter_application_1/screens/home/drawer/DrawerPage.dart';
 import 'package:flutter_application_1/screens/home/widgets/BannerWidget.dart';
 import 'package:flutter_application_1/screens/home/widgets/BottomCardWidget.dart';
 import 'package:flutter_application_1/screens/home/widgets/CategoryWidget.dart';
-import 'package:flutter_application_1/screens/home/widgets/PartnerWidget.dart';
+import 'package:flutter_application_1/screens/home/widgets/OrganizationContactWidget.dart';
 import 'package:flutter_application_1/screens/home/widgets/HomePopUpItem.dart';
 import 'package:flutter_application_1/screens/home/widgets/TitleWidget.dart';
 import 'package:flutter_application_1/screens/home/widgets/TopProductsWidget.dart';
@@ -152,84 +153,148 @@ class _HomePageState extends State<HomePage> {
               withSeeAllButton: true,
             ),
             FutureBuilder(
-              future: GetCategoryService.getCategory(),
-              builder: (context, snapshot) => 
-              snapshot.hasData?
-               SizedBox(
-                      width: double.infinity,
-                      height: 470,
-                      child: ListView.builder(
-                        scrollDirection: Axis.horizontal,
-                        shrinkWrap: true,
-                        itemCount: 5,
-                        itemBuilder: (context, index) {
-                          return Padding(
-                            padding: const EdgeInsets.symmetric(
-                                horizontal: 10, vertical: 10),
-                            child: TopProductsWidget(
-                              index: index,
-                              model: snapshot.data![index],
-                            ),
-                          );
-                        },
-                      ),
-                    )
-                  : 
-                  Container(
-                      child: Center(
-                          child: Text(
-                        '${snapshot.data.toString()}',
-                        maxLines: 100,
-                        
-                      )
-                          // CircularProgressIndicator(
-                          //   strokeWidth: 6,
-                          // ),
+                future: GetCategoryService.getCategory(),
+                builder: (context, snapshot) {
+                  print(snapshot.data);
+                  return snapshot.connectionState == ConnectionState.done
+                      ?
+                      // snapshot.hasData?
+                      SizedBox(
+                          width: double.infinity,
+                          height: 660,
+                          child: ListView.builder(
+                            scrollDirection: Axis.horizontal,
+                            shrinkWrap: true,
+                            itemCount: snapshot.data!.length,
+                            itemBuilder: (context, index) {
+                              return Padding(
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 10, vertical: 10),
+                                child: TopProductsWidget(
+                                  index: index,
+                                  model: snapshot.data![index],
+                                ),
+                              );
+                            },
                           ),
-                    ),
-            ),
+                        )
+                      : snapshot.connectionState == ConnectionState.waiting
+                          ? Container(
+                              child:
+                                  // Center(
+                                  //     child: Text(
+                                  //   '${snapshot.data.toString()}',
+                                  //   maxLines: 100,
+                                  // )
+                                  CircularProgressIndicator(
+                                strokeWidth: 3,
+                              ),
+                              // ),
+                            )
+                          : Container(
+                              child: Text(
+                                snapshot.data.toString(),
+                              ),
+                            );
+                  // :
+                }),
             TitleWidget(
               titleText: 'Hamkor kompaniyalar',
               withSeeAllButton: true,
             ),
-            SizedBox(
-              width: double.infinity,
-              height: 350,
-              child: ListView.builder(
-                scrollDirection: Axis.horizontal,
-                shrinkWrap: true,
-                itemCount: 6,
-                itemBuilder: (context, index) {
-                  return Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-                    child: PartnerWidget(
-                      isSingle: false,
-                    ),
-                  );
-                },
-              ),
-            ),
+            FutureBuilder(
+                future: GetCategoryService.getOrganizations(),
+                builder: (context, snapshot) {
+                  print(snapshot.data);
+                  return snapshot.connectionState == ConnectionState.done
+                      ? SizedBox(
+                          width: double.infinity,
+                          height: 350,
+                          child: ListView.builder(
+                            scrollDirection: Axis.horizontal,
+                            shrinkWrap: true,
+                            itemCount: snapshot.data!.length,
+                            itemBuilder: (context, index) {
+                              return Padding(
+                                padding: EdgeInsets.symmetric(
+                                    horizontal: 10, vertical: 10),
+                                child: OrganizationContactWidget(
+                                  isSingle: false,
+                                  model: snapshot.data![index],
+                                  contactModel: null,
+                                ),
+                              );
+                            },
+                          ),
+                        )
+                      : snapshot.connectionState == ConnectionState.waiting
+                          ? Container(
+                              child:
+                                  // Center(
+                                  //     child: Text(
+                                  //   '${snapshot.data.toString()}',
+                                  //   maxLines: 100,
+                                  // )
+                                  CircularProgressIndicator(
+                                strokeWidth: 3,
+                              ),
+                              // ),
+                            )
+                          : Container(
+                              child: Text(
+                                snapshot.data.toString(),
+                              ),
+                            );
+                }),
             TitleWidget(
               titleText: 'Hamkor kompaniyalar',
               withSeeAllButton: true,
             ),
-            SizedBox(
-              width: double.infinity,
-              height: 350,
-              child: ListView.builder(
-                scrollDirection: Axis.horizontal,
-                shrinkWrap: true,
-                itemCount: 6,
-                itemBuilder: (context, index) {
-                  return Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-                    child: PartnerWidget(
-                      isSingle: false,
-                    ),
-                  );
-                },
-              ),
-            ),
+              FutureBuilder(
+                future: GetCategoryService.getOrganizations(),
+                builder: (context, snapshot) {
+                  print(snapshot.data);
+                  return snapshot.connectionState == ConnectionState.done
+                      ? SizedBox(
+                          width: double.infinity,
+                          height: 350,
+                          child: ListView.builder(
+                            scrollDirection: Axis.horizontal,
+                            shrinkWrap: true,
+                            itemCount: snapshot.data!.length,
+                            itemBuilder: (context, index) {
+                              return Padding(
+                                padding: EdgeInsets.symmetric(
+                                    horizontal: 10, vertical: 10),
+                                child: OrganizationContactWidget(
+                                  isSingle: false,
+                                  model: snapshot.data![index],
+                                  contactModel: null,
+                                ),
+                              );
+                            },
+                          ),
+                        )
+                      : snapshot.connectionState == ConnectionState.waiting
+                          ? Container(
+                              child:
+                                  // Center(
+                                  //     child: Text(
+                                  //   '${snapshot.data.toString()}',
+                                  //   maxLines: 100,
+                                  // )
+                                  CircularProgressIndicator(
+                                strokeWidth: 3,
+                              ),
+                              // ),
+                            )
+                          : Container(
+                              child: Text(
+                                snapshot.data.toString(),
+                              ),
+                            );
+                }),
+          
             BottomInfoWidget()
           ],
         ),

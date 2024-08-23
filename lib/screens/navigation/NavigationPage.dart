@@ -27,7 +27,7 @@ class _NavigationPageState extends State<NavigationPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-     backgroundColor: Colors.white,
+      backgroundColor: Colors.white,
       bottomNavigationBar: BottomNavigationBar(
         backgroundColor: Colors.white,
         onTap: (value) {
@@ -37,6 +37,7 @@ class _NavigationPageState extends State<NavigationPage> {
         },
         currentIndex: bottomNavigationBarIndex,
         type: BottomNavigationBarType.fixed,
+        selectedItemColor: AppColors.green,
         selectedFontSize: 15,
         unselectedFontSize: 15,
         showUnselectedLabels: true,
@@ -59,11 +60,15 @@ class _NavigationPageState extends State<NavigationPage> {
               icon: SvgPicture.asset(AppIcons.shop),
               label: 'Savatcha',
               activeIcon: SvgPicture.asset(
-                AppIcons.category,
+                AppIcons.shop,
                 color: AppColors.primaryColor,
               )),
           BottomNavigationBarItem(
-              icon: SvgPicture.asset(AppIcons.heart),
+              icon: Icon(
+                Icons.favorite_outline,
+                color: AppColors.grey2,
+                size: 25,
+              ),
               label: 'Saqlanganlar',
               activeIcon: SvgPicture.asset(
                 AppIcons.heart,

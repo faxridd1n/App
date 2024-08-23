@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_application_1/assets_path/AppIconsPath.dart';
 import 'package:flutter_application_1/assets_path/AppImagesPath.dart';
 import 'package:flutter_application_1/core/constants/AppColors.dart';
-import 'package:flutter_application_1/models/CategoryModel.dart';
+import 'package:flutter_application_1/models/category/parent_category_model.dart';
 import 'package:flutter_application_1/screens/favorite/components/Data.dart';
 import 'package:flutter_application_1/screens/home/ProductDetailPage.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -13,7 +13,7 @@ List productData = [false, false, false, false, false, false];
 class TopProductsWidget extends StatefulWidget {
   TopProductsWidget({required this.index,required this.model, super.key});
   int index;
-  CategoryModel model;
+  ParentCategoryModel model;
   @override
   State<TopProductsWidget> createState() => _TopProductsWidgetState();
 }
@@ -28,7 +28,7 @@ class _TopProductsWidgetState extends State<TopProductsWidget> {
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => const ProductDetailPage(),
+            builder: (context) =>  ProductDetailPage(model: widget.model,),
           ),
         );
       },
@@ -48,41 +48,41 @@ class _TopProductsWidgetState extends State<TopProductsWidget> {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Image.asset(
-                            AppImages.topProduct,
+                          Image.network(
+                            widget.model.variations[0].files[0].url,
                             fit: BoxFit.fill,
                           ),
                           const SizedBox(
                             height: 10,
                           ),
                            Text(
-                            widget.model.name!,
+                            widget.model.name,
                             maxLines: 2,
-                            style: TextStyle(fontSize: 16),
+                            style: const TextStyle(fontSize: 16),
                             overflow: TextOverflow.ellipsis,
                           ),
                           const SizedBox(
                             height: 10,
                           ),
-                          const Row(
+                           Row(
                             children: [
-                              Icon(
+                              const Icon(
                                 Icons.star,
                                 color: Colors.yellow,
                                 size: 20,
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 width: 10,
                               ),
-                              Text('4.7'),
-                              SizedBox(
+                              Text(widget.model.rating.toString()),
+                              const SizedBox(
                                 width: 10,
                               ),
                               Text(
-                                '(27 ta izohlar)',
-                                style: TextStyle(color: AppColors.grey3),
+                                '(${widget.model.reviewCount.toInt()} ta izohlar)',
+                                style: const TextStyle(color: AppColors.grey3),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 15,
                               ),
                             ],
@@ -90,27 +90,27 @@ class _TopProductsWidgetState extends State<TopProductsWidget> {
                           const SizedBox(
                             height: 20,
                           ),
-                          const Row(
+                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Column(
                                 children: [
-                                  Text(
+                                  const Text(
                                     '18 000 000 so\'m',
                                     style: TextStyle(
                                         decoration: TextDecoration.lineThrough,
                                         color: AppColors.grey3),
                                   ),
                                   Text(
-                                    '15 192 000 so\'m',
-                                    style: TextStyle(
+                                    '${widget.model.variations[0].prices[1].value.toInt()} so\'m',
+                                    style: const TextStyle(
                                       fontSize: 14,
                                       fontWeight: FontWeight.w600,
                                     ),
                                   ),
                                 ],
                               ),
-                              InkWell(
+                              const InkWell(
                                 child: CircleAvatar(
                                   backgroundColor: AppColors.green,
                                   radius: 20,
