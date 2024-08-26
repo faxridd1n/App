@@ -3,7 +3,7 @@ import 'package:flutter_application_1/assets_path/AppIconsPath.dart';
 import 'package:flutter_application_1/core/constants/AppColors.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-class _BottomInfoWidgetState extends State<BottomInfoWidget> {
+class _BottomInfoWidget1State extends State<BottomInfoWidget1> {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -11,24 +11,20 @@ class _BottomInfoWidgetState extends State<BottomInfoWidget> {
       color: AppColors.grey1,
       child: Column(
         children: [
-          Row(
-            children: [
-              SvgPicture.asset(
-                AppIcons.taqsimLogo,
-              ),
-              const SizedBox(
-                width: 30,
-              ),
-              Text('© 2022 «Taqsim»')
-            ],
+          SvgPicture.asset(
+            AppIcons.taqsimLogo,
           ),
+          const SizedBox(
+            width: 30,
+          ),
+          Text('© 2022 «Taqsim»'),
           const SizedBox(
             height: 20,
           ),
           const SizedBox(
             height: 20,
           ),
-          BottomCardWidget(),
+          BottomCardWidget1(),
           const SizedBox(
             height: 20,
           ),
@@ -47,16 +43,17 @@ class _BottomInfoWidgetState extends State<BottomInfoWidget> {
 }
 
 // ignore: must_be_immutable
-class BottomCardWidget extends StatefulWidget {
-  BottomCardWidget({super.key});
+class BottomCardWidget1 extends StatefulWidget {
+  BottomCardWidget1({super.key});
 
   @override
-  State<BottomCardWidget> createState() => _BottomCardWidgetState();
+  State<BottomCardWidget1> createState() => _BottomCardWidget1State();
 }
 
-class _BottomCardWidgetState extends State<BottomCardWidget> {
+class _BottomCardWidget1State extends State<BottomCardWidget1> {
   bool isDropButton1Open = false;
   bool isDropButton2Open = false;
+  bool isDropButton3Open = false;
 
   @override
   Widget build(BuildContext context) {
@@ -74,7 +71,7 @@ class _BottomCardWidgetState extends State<BottomCardWidget> {
             shape: Border.all(color: Colors.transparent),
             iconColor: AppColors.green,
             title: Text(
-              'Biz haqimizda',
+              'Покупателям',
               style: TextStyle(
                 fontSize: 16,
                 fontWeight: FontWeight.w600,
@@ -86,7 +83,7 @@ class _BottomCardWidgetState extends State<BottomCardWidget> {
                 minVerticalPadding: 0,
                 contentPadding: EdgeInsets.all(0),
                 title: Text(
-                  'Meyoriy hujjatlar',
+                  'Доставка',
                   style: TextStyle(
                     color: AppColors.grey2,
                     fontSize: 14,
@@ -99,7 +96,33 @@ class _BottomCardWidgetState extends State<BottomCardWidget> {
                 minTileHeight: 30,
                 contentPadding: EdgeInsets.all(0),
                 title: Text(
-                  'Narxni hisoblash',
+                  'Способы оплаты',
+                  style: TextStyle(
+                    color: AppColors.grey2,
+                    fontSize: 14,
+                    fontWeight: FontWeight.w400,
+                  ),
+                ),
+              ),
+              ListTile(
+                minVerticalPadding: 0,
+                minTileHeight: 30,
+                contentPadding: EdgeInsets.all(0),
+                title: Text(
+                  'Рассрочка',
+                  style: TextStyle(
+                    color: AppColors.grey2,
+                    fontSize: 14,
+                    fontWeight: FontWeight.w400,
+                  ),
+                ),
+              ),
+              ListTile(
+                minVerticalPadding: 0,
+                minTileHeight: 30,
+                contentPadding: EdgeInsets.all(0),
+                title: Text(
+                  'Профиль',
                   style: TextStyle(
                     color: AppColors.grey2,
                     fontSize: 14,
@@ -116,20 +139,21 @@ class _BottomCardWidgetState extends State<BottomCardWidget> {
           ExpansionTile(
             tilePadding: EdgeInsets.all(0),
             shape: Border.all(color: Colors.transparent),
+            iconColor: AppColors.green,
             title: Text(
-              'Hamkorlik',
+              'Taqsim',
               style: TextStyle(
                 fontSize: 16,
                 fontWeight: FontWeight.w600,
               ),
             ),
-            children: const <Widget>[
+            children: <Widget>[
               ListTile(
                 minTileHeight: 30,
                 minVerticalPadding: 0,
                 contentPadding: EdgeInsets.all(0),
                 title: Text(
-                  'Meyoriy hujjatlar',
+                  'О компании',
                   style: TextStyle(
                     color: AppColors.grey2,
                     fontSize: 14,
@@ -138,11 +162,94 @@ class _BottomCardWidgetState extends State<BottomCardWidget> {
                 ),
               ),
               ListTile(
-                minTileHeight: 30,
                 minVerticalPadding: 0,
+                minTileHeight: 30,
                 contentPadding: EdgeInsets.all(0),
                 title: Text(
-                  'Narxni hisoblash',
+                  'Наш блог',
+                  style: TextStyle(
+                    color: AppColors.grey2,
+                    fontSize: 14,
+                    fontWeight: FontWeight.w400,
+                  ),
+                ),
+              ),
+              ListTile(
+                minVerticalPadding: 0,
+                minTileHeight: 30,
+                contentPadding: EdgeInsets.all(0),
+                title: Text(
+                  'Наши партнеры',
+                  style: TextStyle(
+                    color: AppColors.grey2,
+                    fontSize: 14,
+                    fontWeight: FontWeight.w400,
+                  ),
+                ),
+              ),
+              ListTile(
+                minVerticalPadding: 0,
+                minTileHeight: 30,
+                contentPadding: EdgeInsets.all(0),
+                title: Text(
+                  'Поддержка',
+                  style: TextStyle(
+                    color: AppColors.grey2,
+                    fontSize: 14,
+                    fontWeight: FontWeight.w400,
+                  ),
+                ),
+              ),
+            ],
+          ),
+          const Divider(
+            height: 1,
+            color: AppColors.grey2,
+          ),
+          ExpansionTile(
+            tilePadding: EdgeInsets.all(0),
+            shape: Border.all(color: Colors.transparent),
+            iconColor: AppColors.green,
+            title: Text(
+              'Правовая информация',
+              style: TextStyle(
+                fontSize: 16,
+                fontWeight: FontWeight.w600,
+              ),
+            ),
+            children: <Widget>[
+              ListTile(
+                minVerticalPadding: 0,
+                minTileHeight: 30,
+                contentPadding: EdgeInsets.all(0),
+                title: Text(
+                  'Политика конфиденциальности',
+                  style: TextStyle(
+                    color: AppColors.grey2,
+                    fontSize: 14,
+                    fontWeight: FontWeight.w400,
+                  ),
+                ),
+              ),
+              ListTile(
+                minVerticalPadding: 0,
+                minTileHeight: 30,
+                contentPadding: EdgeInsets.all(0),
+                title: Text(
+                  'Условия использования',
+                  style: TextStyle(
+                    color: AppColors.grey2,
+                    fontSize: 14,
+                    fontWeight: FontWeight.w400,
+                  ),
+                ),
+              ),
+              ListTile(
+                minVerticalPadding: 0,
+                minTileHeight: 30,
+                contentPadding: EdgeInsets.all(0),
+                title: Text(
+                  'Правила сервиса',
                   style: TextStyle(
                     color: AppColors.grey2,
                     fontSize: 14,
@@ -160,41 +267,34 @@ class _BottomCardWidgetState extends State<BottomCardWidget> {
             height: 20,
           ),
           const Text(
-            'Служба поддержки 24/7',
+            '998 97 123-45-67',
             style: TextStyle(
               fontSize: 16,
               fontWeight: FontWeight.w600,
             ),
           ),
           const SizedBox(
-            height: 10,
+            height: 5,
           ),
-          const Text('998 97 123-45-67'),
+          const Text('Служба поддержки 24/7'),
            const SizedBox(
-            height: 20,
+            height: 25,
           ),
           const Text(
-            'Почта',
+            'support@taqsim.uz',
             style: TextStyle(
               fontSize: 16,
               fontWeight: FontWeight.w600,
             ),
           ),
           const SizedBox(
-            height: 10,
+            height: 5,
           ),
-          const Text('support@taqsim.uz'),
+          const Text('Почта'),
           const SizedBox(
             height: 10,
           ),
-          const Text(
-            'Qo\'llab-quvvatlash xizmati dushanbadan - jumagacha, soat 9:00 dan 18:00 gacha',
-            maxLines: 2,
-            overflow: TextOverflow.ellipsis,
-          ),
-          const SizedBox(
-            height: 10,
-          ),
+         
           Row(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
@@ -224,9 +324,9 @@ class _BottomCardWidgetState extends State<BottomCardWidget> {
   }
 }
 
-class BottomInfoWidget extends StatefulWidget {
-  const BottomInfoWidget({super.key});
+class BottomInfoWidget1 extends StatefulWidget {
+  const BottomInfoWidget1({super.key});
 
   @override
-  State<BottomInfoWidget> createState() => _BottomInfoWidgetState();
+  State<BottomInfoWidget1> createState() => _BottomInfoWidget1State();
 }

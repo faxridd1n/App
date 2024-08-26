@@ -48,21 +48,17 @@ class AppIcons {
   static const String locationBig = 'assets/icons/locationBig.svg';
   static const String phoneBig = 'assets/icons/phoneBig.svg';
   static const String mailBig = 'assets/icons/mailBig.svg';
-    static const String gerb1 = 'assets/icons/gerb1.svg';
-    static const String document = 'assets/icons/document.svg';
-    static const String upload = 'assets/icons/upload.svg';
-    static const String cartAdd = 'assets/icons/cartAdd.svg';
-        static const String edit = 'assets/icons/edit.svg';
-            static const String nasiya = 'assets/icons/nasiya.svg';
-    static const String shield = 'assets/icons/shield.svg';
-    static const String subsidyaDetail = 'assets/icons/subsidyaDetail.svg';
-    static const String refresh = 'assets/icons/refresh.svg';
-    static const String commentPlus = 'assets/icons/commentPlus.svg';
-
-
-
-
-
-
-
+  static const String gerb1 = 'assets/icons/gerb1.svg';
+  static const String document = 'assets/icons/document.svg';
+  static const String upload = 'assets/icons/upload.svg';
+  static const String cartAdd = 'assets/icons/cartAdd.svg';
+  static const String edit = 'assets/icons/edit.svg';
+  static const String nasiya = 'assets/icons/nasiya.svg';
+  static const String shield = 'assets/icons/shield.svg';
+  static const String subsidyaDetail = 'assets/icons/subsidyaDetail.svg';
+  static const String refresh = 'assets/icons/refresh.svg';
+  static const String commentPlus = 'assets/icons/commentPlus.svg';
+  static const String button_apple = 'assets/icons/button_apple.svg';
+  static const String button_google = 'assets/icons/button_google.svg';
+  static const String taqsimLogo = 'assets/icons/taqsimLogo.svg';
 }

@@ -48,7 +48,7 @@ class TitleWidget extends StatelessWidget {
             child: const Row(
               children: [
                 Text(
-                  'Barchasini ko\'rish',
+                  'Смотреть всё',
                   style: TextStyle(
                     color: AppColors.green,
                     fontSize: 12

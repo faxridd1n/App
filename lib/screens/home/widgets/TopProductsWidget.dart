@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/assets_path/AppIconsPath.dart';
-import 'package:flutter_application_1/assets_path/AppImagesPath.dart';
 import 'package:flutter_application_1/core/constants/AppColors.dart';
 import 'package:flutter_application_1/models/category/parent_category_model.dart';
 import 'package:flutter_application_1/screens/favorite/components/Data.dart';
-import 'package:flutter_application_1/screens/home/ProductDetailPage.dart';
+import 'package:flutter_application_1/screens/home/other_pages/ProductDetailPage.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 List productData = [false, false, false, false, false, false];

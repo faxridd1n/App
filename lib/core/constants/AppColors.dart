@@ -12,6 +12,8 @@ class AppColors {
   static const yellow = Color.fromRGBO(255, 208, 0, 1);
   static const blue=Color.fromRGBO(31, 98, 226, 1);
   static const darkBlue=Color.fromRGBO(2, 87, 135, 1);
+  static const fireColor=Color.fromRGBO(255,142,10,1);
+
 
 
   static const detailPageGradientGreen1 = Color.fromRGBO(108, 181, 73, 0.07);

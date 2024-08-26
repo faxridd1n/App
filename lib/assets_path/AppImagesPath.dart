@@ -42,4 +42,6 @@ class AppImages {
   static const String commentAvatar = 'assets/images/commentAvatar.png';
   static const String commentImage1 = 'assets/images/commentImage1.png';
   static const String commentImage2 = 'assets/images/commentImage2.png';
+  static const String banner2 = 'assets/images/banner2.png';
+
 }

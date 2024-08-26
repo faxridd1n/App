@@ -1,15 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/assets_path/AppIconsPath.dart';
 import 'package:flutter_application_1/core/constants/AppColors.dart';
-import 'package:flutter_application_1/models/OrganizationContactModel.dart';
 import 'package:flutter_application_1/screens/home/drawer/DrawerPage.dart';
 import 'package:flutter_application_1/screens/home/widgets/BannerWidget.dart';
 import 'package:flutter_application_1/screens/home/widgets/BottomCardWidget.dart';
 import 'package:flutter_application_1/screens/home/widgets/CategoryWidget.dart';
 import 'package:flutter_application_1/screens/home/widgets/OrganizationContactWidget.dart';
 import 'package:flutter_application_1/screens/home/widgets/HomePopUpItem.dart';
+import 'package:flutter_application_1/screens/home/widgets/ProductWidget.dart';
 import 'package:flutter_application_1/screens/home/widgets/TitleWidget.dart';
-import 'package:flutter_application_1/screens/home/widgets/TopProductsWidget.dart';
 import 'package:flutter_application_1/service/category/CategoryService.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
@@ -168,13 +167,11 @@ class _HomePageState extends State<HomePage> {
                             itemCount: snapshot.data!.length,
                             itemBuilder: (context, index) {
                               return Padding(
-                                padding: const EdgeInsets.symmetric(
-                                    horizontal: 10, vertical: 10),
-                                child: TopProductsWidget(
-                                  index: index,
-                                  model: snapshot.data![index],
-                                ),
-                              );
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 10, vertical: 10),
+                                  child: ProductWidget(
+                                      index: index,
+                                      model: snapshot.data![index]));
                             },
                           ),
                         )
@@ -250,7 +247,7 @@ class _HomePageState extends State<HomePage> {
               titleText: 'Hamkor kompaniyalar',
               withSeeAllButton: true,
             ),
-              FutureBuilder(
+            FutureBuilder(
                 future: GetCategoryService.getOrganizations(),
                 builder: (context, snapshot) {
                   print(snapshot.data);
@@ -294,7 +291,6 @@ class _HomePageState extends State<HomePage> {
                               ),
                             );
                 }),
-          
             BottomInfoWidget()
           ],
         ),

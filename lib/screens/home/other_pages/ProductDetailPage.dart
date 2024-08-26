@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/assets_path/AppIconsPath.dart';
 import 'package:flutter_application_1/core/constants/AppColors.dart';
-import 'package:flutter_application_1/models/ProductDetailModel.dart';
 import 'package:flutter_application_1/models/category/parent_category_model.dart';
 import 'package:flutter_application_1/screens/home/widgets/BottomCardWidget.dart';
 import 'package:flutter_application_1/screens/home/widgets/DetailPageCommentWidget.dart';
