@@ -10,7 +10,7 @@ import 'package:flutter_application_1/screens/home/widgets/BottomCardWidget1.dar
 import 'package:flutter_application_1/screens/home/widgets/ProductWidget.dart';
 import 'package:flutter_application_1/screens/home/widgets/TitleWidget.dart';
 import 'package:flutter_application_1/screens/home/widgets/fin_prod_widget.dart';
-import 'package:flutter_application_1/service/category/CategoryService.dart';
+import 'package:flutter_application_1/service/home_service/CategoryService.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 

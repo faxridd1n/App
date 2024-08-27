@@ -9,7 +9,7 @@ import 'package:flutter_application_1/screens/home/widgets/OrganizationContactWi
 import 'package:flutter_application_1/screens/home/widgets/ProductDetailPopUpWidget.dart';
 import 'package:flutter_application_1/screens/home/widgets/TitleWidget.dart';
 import 'package:flutter_application_1/screens/home/widgets/TopProductsWidget.dart';
-import 'package:flutter_application_1/service/category/CategoryService.dart';
+import 'package:flutter_application_1/service/home_service/CategoryService.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 

@@ -9,7 +9,7 @@ import 'package:flutter_application_1/screens/home/widgets/OrganizationContactWi
 import 'package:flutter_application_1/screens/home/widgets/HomePopUpItem.dart';
 import 'package:flutter_application_1/screens/home/widgets/ProductWidget.dart';
 import 'package:flutter_application_1/screens/home/widgets/TitleWidget.dart';
-import 'package:flutter_application_1/service/category/CategoryService.dart';
+import 'package:flutter_application_1/service/home_service/CategoryService.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
@@ -183,7 +183,7 @@ class _HomePageState extends State<HomePage> {
                                   //   '${snapshot.data.toString()}',
                                   //   maxLines: 100,
                                   // )
-                                  CircularProgressIndicator(
+                                  const CircularProgressIndicator(
                                 strokeWidth: 3,
                               ),
                               // ),
@@ -213,7 +213,7 @@ class _HomePageState extends State<HomePage> {
                             itemCount: snapshot.data!.length,
                             itemBuilder: (context, index) {
                               return Padding(
-                                padding: EdgeInsets.symmetric(
+                                padding: const EdgeInsets.symmetric(
                                     horizontal: 10, vertical: 10),
                                 child: OrganizationContactWidget(
                                   isSingle: false,
@@ -232,7 +232,7 @@ class _HomePageState extends State<HomePage> {
                                   //   '${snapshot.data.toString()}',
                                   //   maxLines: 100,
                                   // )
-                                  CircularProgressIndicator(
+                                  const CircularProgressIndicator(
                                 strokeWidth: 3,
                               ),
                               // ),
@@ -261,7 +261,7 @@ class _HomePageState extends State<HomePage> {
                             itemCount: snapshot.data!.length,
                             itemBuilder: (context, index) {
                               return Padding(
-                                padding: EdgeInsets.symmetric(
+                                padding: const EdgeInsets.symmetric(
                                     horizontal: 10, vertical: 10),
                                 child: OrganizationContactWidget(
                                   isSingle: false,
@@ -280,7 +280,7 @@ class _HomePageState extends State<HomePage> {
                                   //   '${snapshot.data.toString()}',
                                   //   maxLines: 100,
                                   // )
-                                  CircularProgressIndicator(
+                                  const CircularProgressIndicator(
                                 strokeWidth: 3,
                               ),
                               // ),
@@ -291,7 +291,7 @@ class _HomePageState extends State<HomePage> {
                               ),
                             );
                 }),
-            BottomInfoWidget()
+            const BottomInfoWidget()
           ],
         ),
       ),
