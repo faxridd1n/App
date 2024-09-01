@@ -22,10 +22,10 @@ class ProductDetailPage1 extends StatefulWidget {
   State<ProductDetailPage1> createState() => _ProductDetailPage1State();
 }
 
-class _ProductDetailPage1State extends State<ProductDetailPage1>
-    with SingleTickerProviderStateMixin {
+class _ProductDetailPage1State extends State<ProductDetailPage1> with SingleTickerProviderStateMixin {
   final controller = PageController(viewportFraction: 1, keepPage: true);
   late TabController tabController;
+  int selectedTab = 0;
   @override
   void initState() {
     tabController = TabController(length: 3, vsync: this);
@@ -58,48 +58,37 @@ class _ProductDetailPage1State extends State<ProductDetailPage1>
                                 height: 290,
                                 child: PageView.builder(
                                     controller: controller,
-                                    itemCount: snapshot.data!.result!
-                                        .variations![0].files!.length,
+                                    itemCount: snapshot.data!.result!.variations![0].files!.length,
                                     itemBuilder: (context, index) {
-                                      return Container(
-                                        width:
-                                            MediaQuery.of(context).size.width,
+                                      return SizedBox(
+                                        width: MediaQuery.of(context).size.width,
                                         child: Image.network(
-                                          snapshot.data!.result!.variations![0]
-                                              .files![index].url!,
+                                          snapshot.data!.result!.variations![0].files![index].url!,
                                           fit: BoxFit.fill,
                                         ),
                                       );
                                     }),
                               ),
-
-                              const SizedBox(
-                                height: 10,
-                              ),
+                              const SizedBox(height: 10),
                               Padding(
-                                padding: EdgeInsets.symmetric(
+                                padding: const EdgeInsets.symmetric(
                                   horizontal: 15,
                                   vertical: 10,
                                 ),
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.center,
                                   children: [
-                                    snapshot.data!.result!.variations![0].files!
-                                                .length !=
-                                            0
+                                    snapshot.data!.result!.variations![0].files!.isNotEmpty
                                         ? Container(
                                             decoration: BoxDecoration(
                                               color: AppColors.grey1,
-                                              borderRadius:
-                                                  BorderRadius.circular(100),
+                                              borderRadius: BorderRadius.circular(100),
                                             ),
-                                            padding: EdgeInsets.all(7),
+                                            padding: const EdgeInsets.all(7),
                                             child: SmoothPageIndicator(
                                               controller: controller,
-                                              count: snapshot.data!.result!
-                                                  .variations![0].files!.length,
-                                              effect:
-                                                  const ColorTransitionEffect(
+                                              count: snapshot.data!.result!.variations![0].files!.length,
+                                              effect: const ColorTransitionEffect(
                                                 activeDotColor: AppColors.green,
                                                 dotColor: AppColors.grey3,
                                                 dotHeight: 7,
@@ -107,51 +96,45 @@ class _ProductDetailPage1State extends State<ProductDetailPage1>
                                               ),
                                             ),
                                           )
-                                        : SizedBox(),
-                                    const SizedBox(
-                                      height: 10,
-                                    ),
+                                        : const SizedBox(),
+                                    const SizedBox(height: 10),
                                     Align(
                                       alignment: Alignment.centerLeft,
                                       child: Text(
                                         snapshot.data!.result!.name!,
                                         maxLines: 2,
-                                        style: TextStyle(fontSize: 18,fontWeight: FontWeight.w600,),
+                                        style: const TextStyle(
+                                          fontSize: 18,
+                                          fontWeight: FontWeight.w600,
+                                        ),
                                         overflow: TextOverflow.ellipsis,
                                       ),
                                     ),
-                                    const SizedBox(
-                                      height: 20,
-                                    ),
-                                    FinProdWidget(
-                                      model: widget.model,
-                                    ),
+                                    const SizedBox(height: 20),
+                                    FinProdWidget(model: widget.model),
                                   ],
                                 ),
                               ),
-                              const SizedBox(
-                                height: 20,
-                              ),
-
-                              // the tab bar with two items
+                              const SizedBox(height: 20),
                               SizedBox(
                                 height: 50,
                                 child: TabBar(
                                   indicatorSize: TabBarIndicatorSize.tab,
-                                  // indicatorPadding: const EdgeInsets.symmetric(
-                                  //     horizontal: 50),
-
                                   dividerColor: AppColors.grey3,
                                   labelColor: Colors.black,
                                   unselectedLabelColor: AppColors.grey2,
                                   indicatorColor: Colors.black,
                                   controller: tabController,
-                                  labelPadding: EdgeInsets.all(0),
-                                  tabs: [
+                                  labelPadding: const EdgeInsets.all(0),
+                                  onTap: (index) {
+                                    selectedTab = index;
+                                    setState(() {});
+                                  },
+                                  tabs: const [
                                     Tab(
                                       text: 'Характеристики',
                                     ),
-                                    const Tab(
+                                    Tab(
                                       text: 'Описание',
                                     ),
                                     Tab(text: 'Отзывы'),
@@ -160,19 +143,28 @@ class _ProductDetailPage1State extends State<ProductDetailPage1>
                               ),
 
                               // create widgets for each tab bar here
-                              SizedBox(
-                                height: snapshot.data!.result!.variations![0]
-                                        .attributeValues!.length *
-                                    50,
-                                width: MediaQuery.of(context).size.width,
-                                child: TabBarView(
-                                  controller: tabController,
-                                  children: [
-                                    PDetailPageTab1(model: snapshot.data!),
-                                    PDetailPageTab2(model: snapshot.data!),
-                                    PDetailPageTab3(),
-                                  ],
+                              // SizedBox(
+                              //   height: snapshot.data!.result!.variations![0].attributeValues!.length * 50,
+                              //   width: MediaQuery.of(context).size.width,
+                              //   child: TabBarView(
+                              //     controller: tabController,
+                              //     children: [
+                              //       PDetailPageTab1(model: snapshot.data!),
+                              //       PDetailPageTab2(model: snapshot.data!),
+                              //       const PDetailPageTab3(),
+                              //     ],
+                              //   ),
+                              // ),
+                              AnimatedCrossFade(
+                                firstChild: PDetailPageTab1(model: snapshot.data!),
+                                secondChild: AnimatedCrossFade(
+                                  firstChild: PDetailPageTab2(model: snapshot.data!),
+                                  secondChild: const PDetailPageTab3(),
+                                  crossFadeState: selectedTab == 1 ? CrossFadeState.showFirst : CrossFadeState.showSecond,
+                                  duration: const Duration(milliseconds: 200),
                                 ),
+                                crossFadeState: selectedTab == 0 ? CrossFadeState.showFirst : CrossFadeState.showSecond,
+                                duration: const Duration(milliseconds: 200),
                               ),
 
                               const SizedBox(
@@ -186,8 +178,7 @@ class _ProductDetailPage1State extends State<ProductDetailPage1>
                                   future: GetCategoryService.getProducts(),
                                   builder: (context, snapshot) {
                                     // print(snapshot.data);
-                                    return snapshot.connectionState ==
-                                            ConnectionState.done
+                                    return snapshot.connectionState == ConnectionState.done
                                         ?
                                         // snapshot.hasData?
                                         SizedBox(
@@ -199,21 +190,16 @@ class _ProductDetailPage1State extends State<ProductDetailPage1>
                                               itemCount: snapshot.data!.length,
                                               itemBuilder: (context, index) {
                                                 return Padding(
-                                                  padding: const EdgeInsets
-                                                      .symmetric(
-                                                      horizontal: 10,
-                                                      vertical: 10),
+                                                  padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
                                                   child: ProductWidget(
                                                     index: index,
-                                                    model:
-                                                        snapshot.data![index],
+                                                    model: snapshot.data![index],
                                                   ),
                                                 );
                                               },
                                             ),
                                           )
-                                        : snapshot.connectionState ==
-                                                ConnectionState.waiting
+                                        : snapshot.connectionState == ConnectionState.waiting
                                             ? Container(
                                                 child:
                                                     // Center(
@@ -221,7 +207,7 @@ class _ProductDetailPage1State extends State<ProductDetailPage1>
                                                     //   '${snapshot.data.toString()}',
                                                     //   maxLines: 100,
                                                     // )
-                                                    CircularProgressIndicator(
+                                                    const CircularProgressIndicator(
                                                   strokeWidth: 3,
                                                 ),
                                                 // ),
@@ -233,27 +219,24 @@ class _ProductDetailPage1State extends State<ProductDetailPage1>
                                               );
                                     // :
                                   }),
-
                               Container(
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(15),
                                   color: AppColors.fireColor,
                                 ),
-                                margin: EdgeInsets.symmetric(horizontal: 15),
-                                padding: EdgeInsets.symmetric(
+                                margin: const EdgeInsets.symmetric(horizontal: 15),
+                                padding: const EdgeInsets.symmetric(
                                   horizontal: 20,
                                   vertical: 10,
                                 ),
                                 child: Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                   children: [
                                     SizedBox(
-                                      width: MediaQuery.of(context).size.width *
-                                          0.3,
+                                      width: MediaQuery.of(context).size.width * 0.3,
                                       child: Column(
                                         children: [
-                                          Text(
+                                          const Text(
                                             'В приложении удобнее!',
                                             style: TextStyle(
                                               color: Colors.white,
@@ -263,21 +246,20 @@ class _ProductDetailPage1State extends State<ProductDetailPage1>
                                             overflow: TextOverflow.ellipsis,
                                             maxLines: 2,
                                           ),
-                                          SizedBox(
+                                          const SizedBox(
                                             height: 15,
                                           ),
-                                          Text(
+                                          const Text(
                                             'Оставьте свой номер телефона, и получите ссылку на скачивание приложения',
                                             maxLines: 5,
                                             overflow: TextOverflow.ellipsis,
                                             style: TextStyle(
-                                              color: const Color.fromARGB(
-                                                  255, 240, 240, 240),
+                                              color: Color.fromARGB(255, 240, 240, 240),
                                               fontSize: 12,
                                               fontWeight: FontWeight.w400,
                                             ),
                                           ),
-                                          SizedBox(
+                                          const SizedBox(
                                             height: 30,
                                           ),
                                           SvgPicture.asset(
@@ -312,7 +294,7 @@ class _ProductDetailPage1State extends State<ProductDetailPage1>
                   ),
                 )
               : snapshot.connectionState == ConnectionState.waiting
-                  ? Center(
+                  ? const Center(
                       child:
                           // Center(
                           //     child: Text(
