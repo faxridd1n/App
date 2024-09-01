@@ -38,32 +38,30 @@ class TitleWidget extends StatelessWidget {
                     overflow: TextOverflow.ellipsis,
                   ),
                 ),
-         withSeeAllButton? ElevatedButton(
-            style: ElevatedButton.styleFrom(
-              padding: EdgeInsets.only(left: 10, right: 5, top: 5, bottom: 5),
-              elevation: 0,
-              backgroundColor: AppColors.seeAllButtonColor,
-            ),
-            onPressed: () {},
-            child: const Row(
-              children: [
-                Text(
-                  'Смотреть всё',
-                  style: TextStyle(
-                    color: AppColors.green,
-                    fontSize: 12
+          withSeeAllButton
+              ? GestureDetector(
+                  onTap: () {},
+                  child: const Row(
+                    children: [
+                      Text(
+                        'Смотреть всё',
+                        style: TextStyle(
+                          fontSize: 12,
+                          color: Colors.black,
+                        ),
+                      ),
+                      SizedBox(
+                        width: 10,
+                      ),
+                      Icon(
+                        Icons.arrow_forward,
+                        color: AppColors.grey2,
+                        size: 20,
+                      )
+                    ],
                   ),
-                ),
-                SizedBox(
-                  width: 10,
-                ),
-                Icon(
-                  Icons.arrow_forward_ios_rounded,
-                  color: AppColors.green,
                 )
-              ],
-            ),
-          ):SizedBox()
+              : SizedBox()
         ],
       ),
     );

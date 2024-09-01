@@ -21,6 +21,7 @@ dependencies:
   toggle_switch: ^2.3.0
   connectivity_plus: ^6.0.5
   internet_connection_checker: ^2.0.0
+  shimmer: ^3.0.0
 
 dev_dependencies:
   flutter_test:

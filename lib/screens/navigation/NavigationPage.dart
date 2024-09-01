@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_application_1/assets_path/AppIconsPath.dart';
 import 'package:flutter_application_1/core/constants/AppColors.dart';
 import 'package:flutter_application_1/screens/category/CategoryPage.dart';
-import 'package:flutter_application_1/screens/category_products/CategoryProductsPage.dart';
+import 'package:flutter_application_1/screens/basket/BasketPage.dart';
 import 'package:flutter_application_1/screens/favorite/FavoritePage.dart';
 import 'package:flutter_application_1/screens/home/HomePage.dart';
 import 'package:flutter_application_1/screens/profile/ProfilePage.dart';
@@ -20,7 +20,7 @@ class _NavigationPageState extends State<NavigationPage> {
   List navigationPages = [
     HomePage(),
     CategoryPage(),
-    CategoryProductsPage(),
+    BasketPage(),
     FavoritePage(),
     ProfilePage()
   ];

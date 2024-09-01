@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/core/constants/AppColors.dart';
-import 'package:flutter_application_1/models/category/parent_category_model.dart';
+import 'package:flutter_application_1/models/products_model/parent_category_model.dart';
+import 'package:flutter_application_1/screens/basket/BasketPage.dart';
 import 'package:flutter_application_1/screens/home/other_pages/ProductDetailPage1.dart';
 
 // ignore: must_be_immutable
@@ -30,14 +31,31 @@ class ProductWidget extends StatelessWidget {
                 shadowColor: Colors.black,
                 color: Colors.white,
                 child: Container(
-                  width: MediaQuery.of(context).size.width * 0.75,
+                  width: MediaQuery.of(context).size.width * 0.7,
                   padding: const EdgeInsets.all(15),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Image.network(
-                        model.variations[0].files[0].url,
-                        fit: BoxFit.fill,
+                      Align(
+                        alignment: Alignment.center,
+                        child: Container(
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(5),
+                            image: DecorationImage(
+                              image: NetworkImage(
+                                model.variations[0].files[0].url,
+                              ),
+                              fit: BoxFit.fill,
+                            ),
+                          ),
+                          height: 240,
+                          width: 200,
+                          // child: Image.network(
+                          //   model.variations[0].files[0].url,
+                          //   fit: BoxFit.fill,
+                          //   height: 240,
+                          // ),
+                        ),
                       ),
                       const SizedBox(
                         height: 10,
@@ -60,8 +78,10 @@ class ProductWidget extends StatelessWidget {
                               const Text(
                                 '180 000 сум',
                                 style: TextStyle(
-                                    // decoration: TextDecoration.lineThrough,
-                                    color: AppColors.grey3),
+                                  // decoration: TextDecoration.lineThrough,
+                                  color: AppColors.grey3,
+                                  fontWeight: FontWeight.w500,
+                                ),
                               ),
                             ],
                           ),
@@ -110,7 +130,17 @@ class ProductWidget extends StatelessWidget {
                                   ),
                                   backgroundColor: AppColors.green,
                                 ),
-                                onPressed: () {},
+                                onPressed: () {
+                                  bool isAlreadyHave = false;
+                                  for (var e in basketProducts) {
+                                    if (e.id == model.id) {
+                                      isAlreadyHave = true;
+                                    }
+                                  }
+                                  if (!isAlreadyHave) {
+                                    basketProducts.add(model);
+                                  }
+                                },
                                 child: const Padding(
                                   padding: EdgeInsets.symmetric(
                                     horizontal: 20,
@@ -140,12 +170,13 @@ class ProductWidget extends StatelessWidget {
                                 shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(10),
                                 ),
-                                backgroundColor: AppColors.grey3,
+                                backgroundColor: AppColors.grey1,
                               ),
                               onPressed: () {},
                               child: Icon(
                                 Icons.remove_red_eye_outlined,
                                 color: Colors.black,
+                                size: 20,
                               ),
                             ),
                           ),

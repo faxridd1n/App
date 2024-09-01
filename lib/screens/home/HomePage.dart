@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/assets_path/AppIconsPath.dart';
 import 'package:flutter_application_1/core/constants/AppColors.dart';
@@ -11,6 +13,7 @@ import 'package:flutter_application_1/screens/home/widgets/ProductWidget.dart';
 import 'package:flutter_application_1/screens/home/widgets/TitleWidget.dart';
 import 'package:flutter_application_1/service/home_service/CategoryService.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:shimmer/shimmer.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class HomePage extends StatefulWidget {
@@ -25,6 +28,7 @@ class _HomePageState extends State<HomePage> {
   ScrollController scrollController = ScrollController();
   String selectedItem = 'Toshkent shahri';
   bool popUpIsOpen = false;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -118,14 +122,16 @@ class _HomePageState extends State<HomePage> {
             ),
             Container(
               decoration: BoxDecoration(
-                  color: AppColors.grey3,
-                  borderRadius: BorderRadius.circular(100)),
-              padding: const EdgeInsets.all(7),
+                color: AppColors.grey1,
+                borderRadius: BorderRadius.circular(100),
+              ),
+              padding: EdgeInsets.all(7),
               child: SmoothPageIndicator(
                 controller: controller,
                 count: 4,
                 effect: const ColorTransitionEffect(
                   activeDotColor: AppColors.green,
+                  dotColor: AppColors.grey3,
                   dotHeight: 7,
                   dotWidth: 7,
                 ),
@@ -135,24 +141,68 @@ class _HomePageState extends State<HomePage> {
               titleText: 'Kategoriyalar',
               withSeeAllButton: false,
             ),
-            SizedBox(
-              height: 130,
-              width: double.infinity,
-              child: ListView.builder(
-                scrollDirection: Axis.horizontal,
-                shrinkWrap: true,
-                itemCount: 6,
-                itemBuilder: (context, index) {
-                  return CategoryWidget(index);
-                },
-              ),
-            ),
+            FutureBuilder(
+                future: GetCategoryService.getCategories(),
+                builder: (context, snapshot) {
+                  return SizedBox(
+                    height: 100,
+                    width: double.infinity,
+                    child: ListView.builder(
+                      scrollDirection: Axis.horizontal,
+                      shrinkWrap: true,
+                      itemCount: snapshot.data!.item!.length,
+                      itemBuilder: (context, index) {
+                        return snapshot.connectionState == ConnectionState.done
+                            ? CategoryWidget(
+                                index,
+                                snapshot.data!,
+                              )
+                            : snapshot.connectionState ==
+                                    ConnectionState.waiting
+                                ? Shimmer.fromColors(
+                                    child: Column(
+                                      children: [
+                                        Container(
+                                          decoration: BoxDecoration(
+                                            borderRadius:
+                                                BorderRadius.circular(7),
+                                            color: Colors.white,
+                                          ),
+                                          height: 60,
+                                          width: 70,
+                                        ),
+                                        SizedBox(
+                                          height: 5,
+                                        ),
+                                        Container(
+                                          decoration: BoxDecoration(
+                                            borderRadius:
+                                                BorderRadius.circular(5),
+                                            color: Colors.white,
+                                          ),
+                                          height: 15,
+                                          width: 70,
+                                        )
+                                      ],
+                                    ),
+                                    baseColor: Colors.grey[300]!,
+                                    highlightColor: Colors.grey[100]!,
+                                  )
+                                : Center(
+                                  child: CircularProgressIndicator(
+                                    strokeWidth: 3,
+                                  ),
+                                );
+                      },
+                    ),
+                  );
+                }),
             TitleWidget(
               titleText: 'Sotuv xitlari',
               withSeeAllButton: true,
             ),
             FutureBuilder(
-                future: GetCategoryService.getCategory(),
+                future: GetCategoryService.getProducts(),
                 builder: (context, snapshot) {
                   print(snapshot.data);
                   return snapshot.connectionState == ConnectionState.done
@@ -160,7 +210,7 @@ class _HomePageState extends State<HomePage> {
                       // snapshot.hasData?
                       SizedBox(
                           width: double.infinity,
-                          height: 660,
+                          height: 550,
                           child: ListView.builder(
                             scrollDirection: Axis.horizontal,
                             shrinkWrap: true,

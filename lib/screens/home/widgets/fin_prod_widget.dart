@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/core/constants/AppColors.dart';
-import 'package:flutter_application_1/models/category/parent_category_model.dart';
+import 'package:flutter_application_1/models/products_model/parent_category_model.dart';
 
 // ignore: must_be_immutable
 class FinProdWidget extends StatefulWidget {
@@ -25,8 +25,8 @@ class _FinProdWidgetState extends State<FinProdWidget> {
         children: [
           Padding(
             padding: const EdgeInsets.symmetric(
-              horizontal: 15,
-              vertical: 15,
+              horizontal: 20,
+              vertical: 20,
             ),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -35,6 +35,7 @@ class _FinProdWidgetState extends State<FinProdWidget> {
                   widget.model.variations[0].prices[1].value.toInt().toString(),
                   style: TextStyle(
                     decoration: TextDecoration.lineThrough,
+                    decorationColor: AppColors.grey2,
                     color: AppColors.grey2,
                   ),
                 ),
@@ -46,7 +47,7 @@ class _FinProdWidgetState extends State<FinProdWidget> {
                     Container(
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(100),
-                        color: Colors.pink,
+                        color: AppColors.pink,
                       ),
                       padding: EdgeInsets.symmetric(
                         horizontal: 5,
@@ -65,14 +66,14 @@ class _FinProdWidgetState extends State<FinProdWidget> {
                     Text(
                       '${widget.model.variations[0].prices[1].value.toInt()} сум',
                       style: TextStyle(
-                        fontSize: 16,
+                        fontSize: 18,
                         fontWeight: FontWeight.w500,
                       ),
                     ),
                   ],
                 ),
                 SizedBox(
-                  height: 20,
+                  height: 25,
                 ),
                 ToggleButtons(
                   onPressed: (int index) {
@@ -84,18 +85,21 @@ class _FinProdWidgetState extends State<FinProdWidget> {
                       }
                     });
                   },
+                  borderColor: AppColors.borderColor,
                   borderRadius: const BorderRadius.all(Radius.circular(8)),
                   selectedBorderColor: Colors.blue,
                   selectedColor: Colors.white,
                   fillColor: Colors.blue,
                   color: Colors.black,
-                  constraints:  BoxConstraints(
-                    minHeight: 50.0,
-                    minWidth: MediaQuery.of(context).size.width*0.19,
+                  constraints: BoxConstraints(
+                    minHeight: 55.0,
+                    minWidth: MediaQuery.of(context).size.width * 0.19,
                   ),
                   isSelected: _selectedFruits,
                   children: [
                     Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Text(
                           '3',
@@ -112,6 +116,8 @@ class _FinProdWidgetState extends State<FinProdWidget> {
                       ],
                     ),
                     Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Text(
                           '6',
@@ -128,6 +134,8 @@ class _FinProdWidgetState extends State<FinProdWidget> {
                       ],
                     ),
                     Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Text(
                           '9',
@@ -144,6 +152,8 @@ class _FinProdWidgetState extends State<FinProdWidget> {
                       ],
                     ),
                     Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Text(
                           '12',
@@ -162,7 +172,7 @@ class _FinProdWidgetState extends State<FinProdWidget> {
                   ],
                 ),
                 SizedBox(
-                  height: 20,
+                  height: 25,
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.start,
@@ -170,7 +180,7 @@ class _FinProdWidgetState extends State<FinProdWidget> {
                     Text(
                       '${(widget.model.variations[0].prices[1].value / oy[selectedMonths]).toInt()}',
                       style: TextStyle(
-                        fontSize: 18,
+                        fontSize: 20,
                         fontWeight: FontWeight.w600,
                       ),
                     ),
@@ -190,7 +200,7 @@ class _FinProdWidgetState extends State<FinProdWidget> {
           ),
           Divider(
             height: 1,
-            color: AppColors.grey2,
+            color: AppColors.borderColor,
           ),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 15),
@@ -228,7 +238,7 @@ class _FinProdWidgetState extends State<FinProdWidget> {
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(10),
                     ),
-                    backgroundColor: AppColors.grey3,
+                    backgroundColor: AppColors.grey1,
                   ),
                   onPressed: () {},
                   child: const Padding(
@@ -239,7 +249,7 @@ class _FinProdWidgetState extends State<FinProdWidget> {
                     child: Text(
                       'Купить сразу',
                       style: TextStyle(
-                        color: Colors.white,
+                        color: Colors.black,
                         fontSize: 14,
                         fontWeight: FontWeight.w500,
                       ),

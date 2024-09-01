@@ -11,17 +11,13 @@ class _BottomInfoWidgetState extends State<BottomInfoWidget> {
       color: AppColors.grey1,
       child: Column(
         children: [
-          Row(
-            children: [
-              SvgPicture.asset(
-                AppIcons.taqsimLogo,
-              ),
-              const SizedBox(
-                width: 30,
-              ),
-              Text('© 2022 «Taqsim»')
-            ],
+          SvgPicture.asset(
+            AppIcons.taqsimLogo,
           ),
+          const SizedBox(
+            height: 10,
+          ),
+          Text('© 2022 «Taqsim»'),
           const SizedBox(
             height: 20,
           ),
@@ -114,6 +110,7 @@ class _BottomCardWidgetState extends State<BottomCardWidget> {
             color: AppColors.grey2,
           ),
           ExpansionTile(
+            iconColor: AppColors.green,
             tilePadding: EdgeInsets.all(0),
             shape: Border.all(color: Colors.transparent),
             title: Text(
@@ -170,7 +167,7 @@ class _BottomCardWidgetState extends State<BottomCardWidget> {
             height: 10,
           ),
           const Text('998 97 123-45-67'),
-           const SizedBox(
+          const SizedBox(
             height: 20,
           ),
           const Text(

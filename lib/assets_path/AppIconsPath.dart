@@ -61,4 +61,8 @@ class AppIcons {
   static const String button_apple = 'assets/icons/button_apple.svg';
   static const String button_google = 'assets/icons/button_google.svg';
   static const String taqsimLogo = 'assets/icons/taqsimLogo.svg';
+    static const String basketBox = 'assets/icons/basket_box.svg';
+  static const String emptyBasket = 'assets/icons/empty_basket.svg';
+  static const String xIcon = 'assets/icons/xIcon.svg';
+
 }

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_application_1/assets_path/AppIconsPath.dart';
 import 'package:flutter_application_1/assets_path/AppImagesPath.dart';
 import 'package:flutter_application_1/core/constants/AppColors.dart';
-import 'package:flutter_application_1/models/category/parent_category_model.dart';
+import 'package:flutter_application_1/models/products_model/parent_category_model.dart';
 import 'package:flutter_application_1/screens/home/other_pages/PDetailPageTab1.dart';
 import 'package:flutter_application_1/screens/home/other_pages/PDetailPageTab2.dart';
 import 'package:flutter_application_1/screens/home/other_pages/PDetailPageTab3.dart';
@@ -89,7 +89,7 @@ class _ProductDetailPage1State extends State<ProductDetailPage1>
                                             0
                                         ? Container(
                                             decoration: BoxDecoration(
-                                              color: AppColors.grey3,
+                                              color: AppColors.grey1,
                                               borderRadius:
                                                   BorderRadius.circular(100),
                                             ),
@@ -101,6 +101,7 @@ class _ProductDetailPage1State extends State<ProductDetailPage1>
                                               effect:
                                                   const ColorTransitionEffect(
                                                 activeDotColor: AppColors.green,
+                                                dotColor: AppColors.grey3,
                                                 dotHeight: 7,
                                                 dotWidth: 7,
                                               ),
@@ -115,7 +116,7 @@ class _ProductDetailPage1State extends State<ProductDetailPage1>
                                       child: Text(
                                         snapshot.data!.result!.name!,
                                         maxLines: 2,
-                                        style: TextStyle(fontSize: 16),
+                                        style: TextStyle(fontSize: 18,fontWeight: FontWeight.w600,),
                                         overflow: TextOverflow.ellipsis,
                                       ),
                                     ),
@@ -139,11 +140,13 @@ class _ProductDetailPage1State extends State<ProductDetailPage1>
                                   indicatorSize: TabBarIndicatorSize.tab,
                                   // indicatorPadding: const EdgeInsets.symmetric(
                                   //     horizontal: 50),
+
                                   dividerColor: AppColors.grey3,
                                   labelColor: Colors.black,
                                   unselectedLabelColor: AppColors.grey2,
                                   indicatorColor: Colors.black,
                                   controller: tabController,
+                                  labelPadding: EdgeInsets.all(0),
                                   tabs: [
                                     Tab(
                                       text: 'Характеристики',
@@ -180,7 +183,7 @@ class _ProductDetailPage1State extends State<ProductDetailPage1>
                                 withSeeAllButton: true,
                               ),
                               FutureBuilder(
-                                  future: GetCategoryService.getCategory(),
+                                  future: GetCategoryService.getProducts(),
                                   builder: (context, snapshot) {
                                     // print(snapshot.data);
                                     return snapshot.connectionState ==
@@ -189,7 +192,7 @@ class _ProductDetailPage1State extends State<ProductDetailPage1>
                                         // snapshot.hasData?
                                         SizedBox(
                                             width: double.infinity,
-                                            height: 660,
+                                            height: 550,
                                             child: ListView.builder(
                                               scrollDirection: Axis.horizontal,
                                               shrinkWrap: true,

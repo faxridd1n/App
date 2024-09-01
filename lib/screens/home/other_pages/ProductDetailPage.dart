@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/assets_path/AppIconsPath.dart';
 import 'package:flutter_application_1/core/constants/AppColors.dart';
-import 'package:flutter_application_1/models/category/parent_category_model.dart';
+import 'package:flutter_application_1/models/products_model/parent_category_model.dart';
 import 'package:flutter_application_1/screens/home/widgets/BottomCardWidget.dart';
 import 'package:flutter_application_1/screens/home/widgets/DetailPageCommentWidget.dart';
 import 'package:flutter_application_1/screens/home/widgets/DetailPagePaymentWidget.dart';
@@ -671,7 +671,7 @@ class _ProductDetailPageState extends State<ProductDetailPage>
                                 withSeeAllButton: true,
                               ),
                               FutureBuilder(
-                                  future: GetCategoryService.getCategory(),
+                                  future: GetCategoryService.getProducts(),
                                   builder: (context, snapshot) {
                                     print(snapshot.data);
                                     return snapshot.connectionState ==

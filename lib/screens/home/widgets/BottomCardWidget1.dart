@@ -15,7 +15,7 @@ class _BottomInfoWidget1State extends State<BottomInfoWidget1> {
             AppIcons.taqsimLogo,
           ),
           const SizedBox(
-            width: 30,
+            height: 15,
           ),
           Text('© 2022 «Taqsim»'),
           const SizedBox(

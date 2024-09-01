@@ -1,32 +1,20 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+import 'package:flutter_application_1/assets_path/AppImagesPath.dart';
+import 'package:flutter_application_1/models/categories_model/CategoryModel.dart';
+import 'package:shimmer/shimmer.dart';
 
 import '../../../assets_path/AppIconsPath.dart';
 
 // ignore: must_be_immutable
-class CategoryWidget extends StatelessWidget {
-    
-
-
-  CategoryWidget(this.index, {super.key});
+class CategoryWidget extends StatefulWidget {
+  CategoryWidget(this.index, this.model, {super.key});
+  
+  CategoryModel model;
   int index;
-  List categoryName=[
-    'Quyosh elektr stansiyasi',
-    'Suv isitish kollektori',
-    'Shamol elektor stansiyasi',
-    'Issiq havo nasoslari',
-    'Yoqilg\'i mahsulotlari',
-    'Romlar'
-  ];
-  List bgColors=[
-    Color.fromRGBO(62, 140, 199, 0.1),
-    Color.fromRGBO(252, 188, 4, 0.1),
-      Color.fromRGBO(102, 204, 255, 0.1),
-      Color.fromRGBO(63, 140, 244, 0.1),
-      Color.fromRGBO(62, 140, 199, 0.1),
-      Color.fromRGBO(63, 140, 244, 0.1),
-  ];
-  List categoryIcons=[
+
+  List categoryIcons = [
     AppIcons.category1,
     AppIcons.category2,
     AppIcons.category3,
@@ -35,22 +23,50 @@ class CategoryWidget extends StatelessWidget {
     AppIcons.category6,
   ];
   @override
+  State<CategoryWidget> createState() => _CategoryWidgetState();
+}
+
+class _CategoryWidgetState extends State<CategoryWidget> {
+  @override
   Widget build(BuildContext context) {
     return Container(
+      margin: EdgeInsets.symmetric(horizontal: 5),
       width: 100,
       child: Column(
         children: [
-          CircleAvatar(
-            radius: 25,
-            backgroundColor: bgColors[index],
-            child: SvgPicture.asset(categoryIcons[index]),
-          ),
-         
+           Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(7),
+                  
+                  ),
+                  height: 60,
+                  width: 70,
+                  child: FadeInImage(
+                    fit: BoxFit.fill,
+                    placeholder: AssetImage(AppImages.solarPanel1,),
+                    image: NetworkImage(
+                        widget.model.item![widget.index].image!.url!),
+                    imageErrorBuilder: (context, error, stackTrace) {
+                      return Container(
+                        width: 60,
+                        height: 60,
+                        decoration: BoxDecoration(
+                          image: DecorationImage(
+                            image: AssetImage(
+                              AppImages.solarPanel1,
+                            ),
+                            fit: BoxFit.fill,
+                          ),
+                        ),
+                      );
+                    },
+                  ),
+                ),
           SizedBox(
             height: 5,
           ),
           Text(
-            categoryName[index],
+            widget.model.item![widget.index].name!,
             style: TextStyle(fontSize: 12, fontWeight: FontWeight.w500),
             maxLines: 2,
             textAlign: TextAlign.center,
@@ -60,4 +76,20 @@ class CategoryWidget extends StatelessWidget {
       ),
     );
   }
+}
+
+Widget buildShimmer() {
+  return ListView.builder(itemBuilder: (context, index) {
+    return Shimmer.fromColors(
+      child: Container(
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(7),
+        ),
+        height: 60,
+        width: 70,
+      ),
+      baseColor: Colors.grey[300]!,
+      highlightColor: Colors.grey[100]!,
+    );
+  });
 }

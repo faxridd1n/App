@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/assets_path/AppIconsPath.dart';
 import 'package:flutter_application_1/core/constants/AppColors.dart';
 import 'package:flutter_application_1/screens/home/widgets/DetailPageCommentWidget.dart';
 import 'package:flutter_application_1/screens/home/widgets/ProductDetailPopUpWidget.dart';
-import 'package:flutter_svg/svg.dart';
 
 enum SingingCharacter { var1, var2, var3 }
 
@@ -15,7 +13,6 @@ class PDetailPageTab3 extends StatefulWidget {
 }
 
 class _PDetailPageTab3State extends State<PDetailPageTab3> {
-  SingingCharacter? _character = SingingCharacter.var1;
   @override
   Widget build(BuildContext context) {
     return Container(

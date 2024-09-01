@@ -43,5 +43,7 @@ class AppImages {
   static const String commentImage1 = 'assets/images/commentImage1.png';
   static const String commentImage2 = 'assets/images/commentImage2.png';
   static const String banner2 = 'assets/images/banner2.png';
+  static const String solarPanel1 = 'assets/images/solarPanel1.png';
+  static const String emptyBasket = 'assets/images/emptyBasket.png';
 
 }

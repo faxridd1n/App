@@ -1,5 +1,5 @@
-import 'package:flutter_application_1/models/category/file_element_model.dart';
-import 'package:flutter_application_1/models/category/price_model.dart';
+import 'package:flutter_application_1/models/products_model/file_element_model.dart';
+import 'package:flutter_application_1/models/products_model/price_model.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'variation_model.g.dart';

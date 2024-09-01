@@ -1,19 +1,23 @@
 import 'dart:ui';
 
+import 'package:flutter/material.dart';
+
 class AppColors {
   AppColors._();
-  static const grey1 = Color.fromRGBO(240, 240, 240, 1);
-  static const grey2 = Color.fromRGBO(165, 167, 165, 1);
+  static const grey1 = Color.fromRGBO(242, 242, 242, 1);
+  static const grey2 = Color.fromRGBO(168, 170, 176, 1);
   static const grey3 = Color.fromRGBO(210, 210, 210, 1);
-  static const green = Color.fromRGBO(108, 181, 73, 1);
+  static const green = Color.fromRGBO(186, 214, 67, 1);
   static const seeAllButtonColor = Color.fromRGBO(107, 181, 73, 0.16);
   static const blueText = Color.fromRGBO(32, 53, 74, 1);
   static const grey4 = Color.fromRGBO(245, 245, 245, 1);
   static const yellow = Color.fromRGBO(255, 208, 0, 1);
-  static const blue=Color.fromRGBO(31, 98, 226, 1);
-  static const darkBlue=Color.fromRGBO(2, 87, 135, 1);
-  static const fireColor=Color.fromRGBO(255,142,10,1);
-
+  static const blue = Color.fromRGBO(31, 98, 226, 1);
+  static const darkBlue = Color.fromRGBO(2, 87, 135, 1);
+  static const fireColor = Color.fromRGBO(255, 142, 10, 1);
+  static const borderColor = Color.fromRGBO(224, 224, 224, 1);
+  static const pink = Color.fromRGBO(247, 23, 87, 1);
+  static const transparent = Colors.transparent;
 
 
   static const detailPageGradientGreen1 = Color.fromRGBO(108, 181, 73, 0.07);
